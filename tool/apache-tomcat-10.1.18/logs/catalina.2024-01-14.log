@@ -182,3 +182,56 @@
 14-Jan-2024 18:21:37.207 정보 [main] org.apache.catalina.core.StandardService.stopInternal 서비스 [Catalina]을(를) 중지시킵니다.
 14-Jan-2024 18:21:37.242 정보 [main] org.apache.coyote.AbstractProtocol.stop 프로토콜 핸들러 ["http-nio-8080"]을(를) 중지시킵니다.
 14-Jan-2024 18:21:37.264 정보 [main] org.apache.coyote.AbstractProtocol.destroy 프로토콜 핸들러 ["http-nio-8080"]을(를) 소멸시킵니다.
+14-Jan-2024 22:00:40.376 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 서버 버전 이름:    Apache Tomcat/10.1.18
+14-Jan-2024 22:00:40.392 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log Server 빌드 시각:  Jan 5 2024 14:39:40 UTC
+14-Jan-2024 22:00:40.393 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log Server 버전 번호:  10.1.18.0
+14-Jan-2024 22:00:40.393 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 운영체제 이름:     Windows 11
+14-Jan-2024 22:00:40.395 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 운영체제 버전:     10.0
+14-Jan-2024 22:00:40.396 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 아키텍처:          amd64
+14-Jan-2024 22:00:40.396 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 자바 홈:           C:\Program Files\Eclipse Adoptium\jdk-17.0.9.9-hotspot
+14-Jan-2024 22:00:40.397 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log JVM 버전:          17.0.9+9
+14-Jan-2024 22:00:40.398 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log JVM 벤더:          Eclipse Adoptium
+14-Jan-2024 22:00:40.400 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:     C:\SpringRoadmap\springBoot\tool\apache-tomcat-10.1.18
+14-Jan-2024 22:00:40.400 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:     C:\SpringRoadmap\springBoot\tool\apache-tomcat-10.1.18
+14-Jan-2024 22:00:40.416 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  -Djava.util.logging.config.file=C:\SpringRoadmap\springBoot\tool\apache-tomcat-10.1.18\conf\logging.properties
+14-Jan-2024 22:00:40.416 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+14-Jan-2024 22:00:40.417 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  -Djdk.tls.ephemeralDHKeySize=2048
+14-Jan-2024 22:00:40.417 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+14-Jan-2024 22:00:40.418 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  --add-opens=java.base/java.lang=ALL-UNNAMED
+14-Jan-2024 22:00:40.418 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  --add-opens=java.base/java.io=ALL-UNNAMED
+14-Jan-2024 22:00:40.419 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  --add-opens=java.base/java.util=ALL-UNNAMED
+14-Jan-2024 22:00:40.420 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+14-Jan-2024 22:00:40.421 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+14-Jan-2024 22:00:40.421 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  -Dcatalina.base=C:\SpringRoadmap\springBoot\tool\apache-tomcat-10.1.18
+14-Jan-2024 22:00:40.422 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  -Dcatalina.home=C:\SpringRoadmap\springBoot\tool\apache-tomcat-10.1.18
+14-Jan-2024 22:00:40.422 정보 [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  -Djava.io.tmpdir=C:\SpringRoadmap\springBoot\tool\apache-tomcat-10.1.18\temp
+14-Jan-2024 22:00:40.433 정보 [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR 버전 [1.7.4]을(를) 사용한, APR 기반 Apache Tomcat Native 라이브러리 [2.0.6]을(를) 로드했습니다.
+14-Jan-2024 22:00:40.442 정보 [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL이 성공적으로 초기화되었습니다: [OpenSSL 3.0.11 19 Sep 2023]
+14-Jan-2024 22:00:40.800 정보 [main] org.apache.coyote.AbstractProtocol.init 프로토콜 핸들러 ["http-nio-8880"]을(를) 초기화합니다.
+14-Jan-2024 22:00:40.889 정보 [main] org.apache.catalina.startup.Catalina.load [783] 밀리초 내에 서버가 초기화되었습니다.
+14-Jan-2024 22:00:41.088 정보 [main] org.apache.catalina.core.StandardService.startInternal 서비스 [Catalina]을(를) 시작합니다.
+14-Jan-2024 22:00:41.090 정보 [main] org.apache.catalina.core.StandardEngine.startInternal 서버 엔진을 시작합니다: [Apache Tomcat/10.1.18]
+14-Jan-2024 22:00:41.155 정보 [main] org.apache.catalina.startup.HostConfig.deployWAR 웹 애플리케이션 아카이브 [C:\SpringRoadmap\springBoot\tool\apache-tomcat-10.1.18\webapps\ROOT.war]을(를) 배치합니다.
+14-Jan-2024 22:00:42.191 정보 [main] org.apache.jasper.servlet.TldScanner.scanJars 적어도 하나의 JAR가 TLD들을 찾기 위해 스캔되었으나 아무 것도 찾지 못했습니다. 스캔했으나 TLD가 없는 JAR들의 전체 목록을 보시려면, 로그 레벨을 디버그 레벨로 설정하십시오. 스캔 과정에서 불필요한 JAR들을 건너뛰면, 시스템 시작 시간과 JSP 컴파일 시간을 단축시킬 수 있습니다.
+14-Jan-2024 22:00:42.342 정보 [main] org.apache.catalina.startup.HostConfig.deployWAR 웹 애플리케이션 아카이브 [C:\SpringRoadmap\springBoot\tool\apache-tomcat-10.1.18\webapps\ROOT.war]의 배치가 [1,185] 밀리초에 완료되었습니다.
+14-Jan-2024 22:00:42.355 정보 [main] org.apache.coyote.AbstractProtocol.start 프로토콜 핸들러 ["http-nio-8880"]을(를) 시작합니다.
+14-Jan-2024 22:00:42.452 정보 [main] org.apache.catalina.startup.Catalina.start 서버가 [1562] 밀리초 내에 시작되었습니다.
+14-Jan-2024 22:02:07.553 심각 [main] org.apache.catalina.startup.Catalina.stopServer [localhost:8005] (base 포트 [8005] 그리고 offset [0])와(과) 연결할 수 없었습니다. Tomcat이 실행 중이지 않을 수 있습니다.
+14-Jan-2024 22:02:07.560 심각 [main] org.apache.catalina.startup.Catalina.stopServer Catalina를 중지시키는 중 오류 발생
+	java.net.ConnectException: Connection refused: connect
+		at java.base/sun.nio.ch.Net.connect0(Native Method)
+		at java.base/sun.nio.ch.Net.connect(Net.java:579)
+		at java.base/sun.nio.ch.Net.connect(Net.java:568)
+		at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:593)
+		at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+		at java.base/java.net.Socket.connect(Socket.java:633)
+		at java.base/java.net.Socket.connect(Socket.java:583)
+		at java.base/java.net.Socket.<init>(Socket.java:507)
+		at java.base/java.net.Socket.<init>(Socket.java:287)
+		at org.apache.catalina.startup.Catalina.stopServer(Catalina.java:692)
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+		at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+		at org.apache.catalina.startup.Bootstrap.stopServer(Bootstrap.java:393)
+		at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:483)
