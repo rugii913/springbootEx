@@ -1,6 +1,5 @@
 package hello.servlet;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,7 +14,7 @@ public class HelloServlet extends HttpServlet {
     // - 직접 서블릿을 생성하므로, 생성 시 필요한 정보를 같이 넘겨줄 수 있음
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         System.out.println("HelloServlet.service");
         resp.getWriter().println("hello servlet!");
     }
