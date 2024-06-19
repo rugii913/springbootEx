@@ -43,8 +43,11 @@ repositories {
 }
 
 dependencies {
-    // 서블릿
-    implementation("jakarta.servlet:jakarta.servlet-api:6.0.0")
+    // Jakarta servlet - https://projects.eclipse.org/projects/ee4j.servlet
+    implementation("jakarta.servlet:jakarta.servlet-api:6.1.0")
+
+    // Spring Web MVC → Spring Core 등 포함(cf. Web MVC가 아니라 Web이면 context가 빠져있음)
+    implementation("org.springframework:spring-webmvc:6.1.9")
 }
 
 java {
