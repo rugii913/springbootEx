@@ -32,7 +32,7 @@ public class AppInitV3SpringMvc implements WebApplicationInitializer {
     // 
 
     @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
+    public void onStartup(ServletContext servletContext) {
         System.out.println("AppInitV3SpringMvc.onStartup");
 
         // Spring container 직접 생성 + 작성해둔 configuration 등록

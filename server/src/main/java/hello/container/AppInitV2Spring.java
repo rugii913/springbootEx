@@ -20,6 +20,9 @@ public class AppInitV2Spring implements AppInit { // application 초기화 과�
         // - AnnotationConfigWebApplicationContext는 WebApplicationContext의 구현 클래스로 servlet과 관련된 작업을 할 수 있는 메서드를 갖고 있음
         // - DispatcherServlet는 생성 시 WebApplicationContext를 arg로 받아 webApplicationContext property로 두고,
         //   - DispatcherServlet에서 각 controller로 연결하는 작업에 이용함
+        // - 위에서 Spring MVC를 호출한다는 것은 Spring container에
+        //   - 특정 규칙에 따라 엔드포인트로 기능하는 bean(객체)가 있어
+        //   - dispatcher servlet과 해당 엔드포인트를 중심으로 MVC 구조에 따라 동작함을 의미함
         DispatcherServlet dispatcherServlet = new DispatcherServlet(appContext);
         
         // dispatcher servlet을 servlet container에 등록
