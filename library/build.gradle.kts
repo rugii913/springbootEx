@@ -23,6 +23,18 @@ repositories {
     mavenCentral()
 }
 
+/*
+* 자동 구성된 라이브러리 버전 변경하기
+* - 버전 변경이 필요한 경우
+*   - 완벽한 것은 없기 때문에 라이브러리 충돌이 있을 수도 있음
+*   - 혹은 버그, 보안 이슈 등으로 인해 버전을 꼭 바꿔야하는 경우도 있을 수 있음
+*   - 이런 경우 자동 구성된 라이브러리 버전을 ext[".."] = "버전"을 이용해 변경 지정할 수 있음
+*     - 직접 지정한 버전 값이 우선 적용
+* - ext[".."] = "버전"에서 첫번째 대괄호에 들어갈 property 값은 다음의 Spring Boot 공식 문서에서 확인 가능
+*   - https://docs.spring.io/spring-boot/appendix/dependency-versions/properties.html
+* */
+// ext["querydsl.version"] = "5.0.0"
+
 dependencies {
     /*
     * 웹 애플리케이션에서 라이브러리 관리의 어려움 → 처음 프로젝트를 세팅하는 데에도 많은 시간이 소요됨
