@@ -66,21 +66,37 @@ dependencies {
     *   - https://docs.spring.io/spring-boot/appendix/dependency-versions/coordinates.html
     * - Spring Boot에서 관리하지 않는 외부 라이브러리의 경우 버전을 직접 적어줘야 함 - ex. MyBatis
     * */
-    // - Spring Web MVC
-    implementation("org.springframework:spring-webmvc")
-    // - embedded Tomcat → spring-boot-starter-tomcat에 포함됨
-    implementation("org.apache.tomcat.embed:tomcat-embed-core")
-    // - JSON 처리 → spring-boot-starter-json에 포함됨
-    implementation("com.fasterxml.jackson.core:jackson-databind")
-    // - Spring Boot 관련 → spring-boot-starter 등에 포함됨
-    implementation("org.springframework.boot:spring-boot")
-    implementation("org.springframework.boot:spring-boot-autoconfigure")
-    // - log 관련 → spring-boot-starter-logging에 포함됨
-    implementation("ch.qos.logback:logback-classic")
-    implementation("org.apache.logging.log4j:log4j-to-slf4j")
-    implementation("org.slf4j:jul-to-slf4j")
-    // - yml 관련 → spring-boot-starter에 포함됨
-    implementation("org.yaml:snakeyaml")
+//    // - Spring Web MVC
+//    implementation("org.springframework:spring-webmvc")
+//    // - embedded Tomcat → spring-boot-starter-tomcat에 포함됨
+//    implementation("org.apache.tomcat.embed:tomcat-embed-core")
+//    // - JSON 처리 → spring-boot-starter-json에 포함됨
+//    implementation("com.fasterxml.jackson.core:jackson-databind")
+//    // - Spring Boot 관련 → spring-boot-starter 등에 포함됨
+//    implementation("org.springframework.boot:spring-boot")
+//    implementation("org.springframework.boot:spring-boot-autoconfigure")
+//    // - log 관련 → spring-boot-starter-logging에 포함됨
+//    implementation("ch.qos.logback:logback-classic")
+//    implementation("org.apache.logging.log4j:log4j-to-slf4j")
+//    implementation("org.slf4j:jul-to-slf4j")
+//    // - yml 관련 → spring-boot-starter에 포함됨
+//    implementation("org.yaml:snakeyaml")
+
+    /*
+    * 3. Spring Boot starter
+    * - 특정 목적으로 프로젝트를 구성할 때 일반적으로 필요한 라이브러리를 세트로 가져오는 spring-boot-starter 제공
+    *   - Spring Initializr로 프로젝트를 구성할 때도 주로 spring-boot-starter들을 이용하여 build.gradle을 만들어줌
+    *   - starter가 다른 starter를 의존할 수도 있음
+    * - Spring Boot starter의 이름 패턴
+    *   - (공식) spring-boot-starter-[particular type of application]
+    *   - (비공식) [third party project 이름]-spring-boot-starter
+    *     - ex. mybatis-spring-boot-starter
+    * - starter의 목록도 공식 문서에서 확인 가능
+    *   - https://docs.spring.io/spring-boot/reference/using/build-systems.html#using.build-systems.starters
+    *   - 자주 사용할만한 starter로는 spring-boot-starter, jdbc, data-jpa, data-mongodb, data-redis, thymeleaf, web, validation, batch 정도가 있음
+    * - 어떤 프로젝트 구성 시 필요한 라이브러리가 있으면 일단 Spring Boot starter에서 찾아보는 것도 괜찮은 방법
+    * */
+    implementation("org.springframework.boot:spring-boot-starter-web")
 
 //    testImplementation("org.springframework.boot:spring-boot-starter-test")
 //    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
