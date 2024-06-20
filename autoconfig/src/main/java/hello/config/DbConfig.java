@@ -11,7 +11,14 @@ import org.springframework.transaction.TransactionManager;
 import javax.sql.DataSource;
 
 @Slf4j
-@Configuration
+//@Configuration
+/*
+ * - @Configuration을 주석 처리하고 DbConfigTest.checkBean() 테스트를 돌려보면
+ *   - "dataSource bean 등록" 등은 출력되지 않음
+ *   - 그런데 DbConfigTest.checkBean() 테스트는 성공하며 객체가 출력됨 → null이 아님
+ * - DataSource, TransactionManager, JdbcTemplate는 Spring Boot가 자동으로 구성해줌을 알 수 있음
+ *   - 이 때문에 MemberRepositoryTest.memberTest()도 성공함
+ * */
 public class DbConfig {
     /*
     * - Spring bean 직접 등록
