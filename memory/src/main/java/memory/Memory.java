@@ -1,4 +1,4 @@
-package hello.memory;
+package memory;
 
 public class Memory {
     private final long used;
