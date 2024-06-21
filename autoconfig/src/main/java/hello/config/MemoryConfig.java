@@ -17,6 +17,16 @@ import org.springframework.context.annotation.Configuration;
 //@Conditional(ConditionOnMemory.class) // 명시된 Condition type의 matches()가 true를 반환할 때만 config가 등록
 @Configuration
 public class MemoryConfig {
+    /*
+    * auto configuration의 필요성
+    * - 라이브러리를 사용하는 클라이언트 개발자 입장에서 보면
+    *   - 라이브러리 내부의 어떤 bean을 등록해야 하는지 알아야 함
+    *   - 알고난 뒤, 직접 config 파일을 작성하여 하나하나 bean으로 등록해줘야 함
+    * - 라이브러리를 제공하는 개발자 입장에서도
+    *   - 구체적인 내용을 알려주는 문서를 상세하게 작성해두어야 함
+    *   - 물론 auto configuration을 이용하더라도 문서는 작성해야겠지만...
+    * - 이런 부분은 자동으로 처리해서 라이브러리를 프로젝트에 포함시키기만 하면 자동으로 bean 등록 작업들을 처리해주는 것이 auto configuration
+    * */
 
     @Bean
     public MemoryController memoryController() {
