@@ -1,6 +1,2 @@
 rootProject.name = "springBoot"
-include("server")
-include("embedded")
-include("boot")
-include("library")
-include("autoconfig")
+include("server", "embedded", "boot", "library", "autoconfig", "memory")
