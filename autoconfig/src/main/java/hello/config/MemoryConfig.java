@@ -1,10 +1,13 @@
 package hello.config;
 
+import memory.ConditionOnMemory;
 import memory.MemoryController;
 import memory.MemoryFinder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 
+@Conditional(ConditionOnMemory.class) // 명시된 Condition type의 matches()가 true를 반환할 때만 config가 등록
 @Configuration
 public class MemoryConfig {
 
