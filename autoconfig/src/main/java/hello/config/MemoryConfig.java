@@ -4,7 +4,6 @@ import memory.MemoryController;
 import memory.MemoryFinder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 @ConditionalOnProperty(name = "memory", havingValue = "on")
 /*
@@ -15,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 *   - cf. @Conditional과 Condition은 spring-context 라이브러리에 있으나, 그 확장인 @ConditionalOnXxx는 spring-boot-autoconfigure 라이브러리
 * */
 //@Conditional(ConditionOnMemory.class) // 명시된 Condition type의 matches()가 true를 반환할 때만 config가 등록
-@Configuration
+//@Configuration // @Conditional 작업을 라이브러리에서 auto configuration으로 해줄 것이라 config에서 제외시키기 위해 주석 처리
 public class MemoryConfig {
     /*
     * auto configuration의 필요성
