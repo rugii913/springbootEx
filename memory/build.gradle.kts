@@ -1,7 +1,5 @@
 plugins {
     `java-library`
-    id("org.springframework.boot") version "3.3.0"
-    id("io.spring.dependency-management") version "1.1.5"
 }
 
 group = "memory"
@@ -24,6 +22,6 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    annotationProcessor("org.projectlombok:lombok")
+    implementation("org.springframework.boot:spring-boot-starter-web:3.3.0")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
 }
