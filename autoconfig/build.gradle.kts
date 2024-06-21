@@ -32,7 +32,8 @@ dependencies {
 
     // memory project를 가져옴
 //    implementation(project(":memory")) // → Gradle multimodule로 구성했을 때 사용할 수 있는 방식
-    implementation(files("libs/memory-0.0.1-SNAPSHOT.jar")) // → jar 파일을 직접 가져올 수 있는 방식
+    implementation(files("libs/memory-0.0.2-SNAPSHOT.jar")) // → jar 파일을 직접 가져올 수 있는 방식
+    // memory-0.0.2-SNAPSHOT에서 라이브러리 등록만으로 MemoryController와 MemoryFinder bean이 자동 구성되었음
 
     // test 관련
     testImplementation("org.springframework.boot:spring-boot-starter-test")
