@@ -39,11 +39,6 @@ import javax.sql.DataSource;
 *       - @ConditionalOnMissingBean(JdbcOperations.class) → 해당 type bean이 등록되어 있지 않은 경우 설정 동작
 *       - 그런데 JdbcTemplate이 JdbcOpertaion의 subtype → 즉 개발자가 등록한 JdbcTemplate이 없는 경우에 해당 자동 구성이 동작한다는 것
 * */
-/*
-* - Spring Boot auto configuration의 핵심
-*   - (1) @Conditional
-*   - (2) @AutoConfiguration
-* */
 public class DbConfig {
     /*
     * - Spring bean 직접 등록
