@@ -4,6 +4,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /*
+ * - auto configuration의 필요성 → 반복되는 bean 구성 코드 최소화
+ *   - 매 프로젝트마다 반복되는 Spring bean이 있음, bean 구성 시 관계가 복잡한 부분 있음 → 이런 코드를 직접 작성하지 않아 생산성 향상
+ *     - 라이브러리를 개발하는 입장이 되면 이 필요성을 더 잘 느낄 수 있음
+ *   - 그러면 라이브러리를 사용하는 클라이언트 개발자 입장에서 auto configuration은 메커니즘은 몰라도 되고 사용할 줄만 알면 되는가?
+ *     - 자동 구성된 bean에 문제가 있는 경우, 문제를 해결하기 위해서라도 대략적인 메커니즘은 알 필요가 있음
+ * */
+/*
  * Spring Boot auto configuration의 핵심
  * - (1) @Conditional
  *   - Condition 인터페이스에서 구현한 matches() return value에 따라 @Configuration이 붙은 클래스의 설정 정보 등록 여부 판단
@@ -60,3 +67,19 @@ public class AutoConfigApplication {
  *     → META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports 파일을 열어서 구성 정보 클래스들이 선택됨
  *     → 해당 클래스들의 설정 정보가 spring container에 자동으로 등록되고 사용됨
  * */
+/*
+* 참고 사항
+* - @AutoConfiguration은 component scan 대상이 되어선 안 됨
+*   - @AutoConfiguration은 분명 config 정보이므로 @Configuration이 붙어있지만
+*   - 앞에서 보았듯 별도 파일로 명시하여 설정 정보가 되도록 해야하지 component scan 대상이 되면 안 됨
+*     - 일반 Spring 설정과 lifecycle이 다르기 때문, 이를 고려하지 않으면 중복 등록될 수도 있을 것
+*   - 이를 위해 @SpringBootApplication에서
+*     - @ComponentScan(excludeFilters = { @Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })와 같이
+*     - @AutoConfiguration을 component scan 대상에서 제외하는 AutoConfigurationExcludeFilter 필터를 붙여두었음
+*   - Spring Boot에서만 문제가 되는 이유는 auto configuration 자체가 Spring Boot에서만 동작하는 것이기 때문임
+* - auto configuration 동작을 알아두어야 하는 이유
+*   - 라이브러리를 만드는 경우가 아니면 @AutoConfiguration을 사용할 일이 거의 없지만
+*   - 개발 진행 시 특정 빈들이 어떻게 등록되는지 파악해야 하는 경우가 있고 ex. 원하지 않는 bean이 등록된 경우 등
+*     - 이 때 auto configuration 관련 코드를 읽을 수 있고 메커니즘을 알아야
+*     - 문제에 대처가 가능하기 때문
+* */

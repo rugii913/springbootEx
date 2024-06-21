@@ -12,16 +12,13 @@ import javax.sql.DataSource;
 @Slf4j
 //@Configuration
 /*
+ * auto configuration을 알아보기 시작한 부분, 문제의 발단
  * - @Configuration을 주석 처리하고 DbConfigTest.checkBean() 테스트를 돌려보면
  *   - "dataSource bean 등록" 등은 출력되지 않음
  *   - 그런데 DbConfigTest.checkBean() 테스트는 성공하며 객체가 출력됨 → null이 아님
  * - DataSource, TransactionManager, JdbcTemplate는 Spring Boot가 자동으로 구성해줌을 알 수 있음
  *   - 이 때문에 MemberRepositoryTest.memberTest()도 성공함
  * */
-/*
-* - auto configuration의 필요성 → 반복되는 bean 구성 코드 최소화
-*   - 매 프로젝트마다 반복되는 Spring bean이 있음, bean 구성 시 관계가 복잡한 부분 있음 → 이런 코드를 직접 작성하지 않아 생산성 향상
-* */
 /*
 * - spring-boot-autoconfigure 프로젝트(라이브러리)
 *   - spring-boot-starter 라이브러리는 spring-boot-autoconfigure 라이브러리 종속성을 가짐
