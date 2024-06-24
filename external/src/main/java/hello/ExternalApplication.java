@@ -73,6 +73,8 @@ public class ExternalApplication {
      * 외부 설정 3-1 - Spring Boot의 command line option 인수
      * - 설정 방법
      *   - Spring Boot의 방식, 인수가 "--"(dash 2개)로 시작하면 Spring Boot에서 key=value 형식으로 인식
+     * - 조회 방법
+     *   - ApplicationArguments 인터페이스의 getOptionNames(), getOptionValues(), getNonOptionArgs() 이용
      * - 동작 구조
      *   - ApplicationArguments 인터페이스, DefaultApplicationArguments 구현 클래스, CommandLinePropertySource 추상 클래스 이용
      *     - arg 데이터를 ApplicationArguments ADT로 변환하여 사용
@@ -85,8 +87,12 @@ public class ExternalApplication {
      *   - 정리하면 new DefaultApplicationArguments(args)로 ApplicationArguments type 객체를 생성할 때
      *     - 일정 로직에 따라 Map 형식 optionsArgs, List nonOptionArgs이 나뉘어져, 이미 구현된 parsing 로직을 사용하는 것
      *   - value는 List<String> 형태가 되어 하나의 key에 여러 value를 줄 수 있음
-     * - 조회 방법
-     *   - ApplicationArguments 인터페이스의 getOptionNames(), getOptionValues(), getNonOptionArgs() 이용
+     * - command line option 인수를 담고 있는 ApplicationArguments의 Spring bean 등록
+     *   - Spring Boot는 command line option 인수를 활용할 수 있는 ApplicationArguments를 Spring bean으로 등록해둠
+     *     - 해당 type 객체에 입력받은 command line을 모두 저장해둠(non option arguments 포함)
+     *     - 해당 bean을 이용하면 command line 인수로 입력받은 값을 어디에서든 사용할 수 있음
+     *   - 즉 main()에서 뿐만이 아니라 app 전체에서 코드를 통해 args 값을 이용할 수 있다는 것
+     *     - 특히 단순 command line 인수가 아니라 "--"가 붙은 Spring boot의 command line option 인수라면 key=value 형식으로 이용 가능
      * */
     /*
      * 외부 설정에 대한 Spring의 통합
