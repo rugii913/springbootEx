@@ -57,6 +57,17 @@ public class ExternalApplication {
      * */
     /*
      * 외부 설정 3 - command line 인수
+     * - 설정 방법
+     *   - 일반적인 String 전달
+     *     - java -jar [jar 파일] arg1 arg2 ...
+     *     - 필요한 데이터를 마지막 위치에 공백 문자로 구분해서 전달
+     *       - 데이터 자체에 공백이 있는 경우 ""로 묶어서 전달
+     *     - Java app 실행 시점에 외부 설정값을 main() 메서드의 args 파라미터로 전달
+     *   - key=value 형식 전달 불가능
+     *     - "url=devdb"과 같은 데이터를 전달해서 사용하려면 직접 parsing 필요
+     *     - 직접 parsing 하는 불편함을 줄이기 위해 Spring이 제공하는 command line option 인수 활용 가능(외부 설정 4 참고)
+     * - command line 인수 조회
+     *   - main()이 파라미터로 받은 args로 조회
      * */
     /*
      * 외부 설정 4 - command line 옵션 인수
