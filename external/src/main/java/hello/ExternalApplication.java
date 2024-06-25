@@ -96,5 +96,23 @@ public class ExternalApplication {
      * */
     /*
      * 외부 설정에 대한 Spring의 통합
+     * - cf. Spring Boot가 아닌 Spring Core의 기능
+     * - 필요성
+     *   - 앞서 살펴본 OS 환경 변수, Java 시스템 속성, 커맨드라인 옵션 인수 모두 단순하게 생각하면 key=value 형식의 외부 설정값
+     *   - 그런데 어디에 있는 외부 설정값을 읽어야 하는지에 따라 읽는 방법이 다름
+     *     - System.getenv(), System.getProperties(), main의 args 또는 ApplicationArguments bean의 source
+     *   - 문제점
+     *     - 환경 변수를 두는 곳이 변경(ex. OS 환경 변수에서 Java 시스템 속성으로)되면
+     *     - 환경 변수를 읽어들이는 소스 코드가 변경되어야 하고, 다시 빌드해야 함
+     * - 해결 방법 → 추상화
+     *   - abstract class PropertySource를 통한 추상화
+     *     - 각각의 외부 설정을 조회하는 XxxPropertySource 구현체를 Spring 로딩 시점에 생성
+     *     - Environment bean에서 사용할 수 있도록 연결해둠 
+     *   - interface Environment를 통한 추상화
+     *     - 외부 설정의 종류와 관계 없이 Environment bean을 통해 환경 변수 조회 가능
+     *   - **사용하는 외부 설정이 변경되더라도 소스코드는 변경되지 않아도 되도록, 변경되는 부분과 변경되지 않는 부분을 잘 나누어 놓은 것**
+     * - key 적용 우선 순위
+     *   - 더 유연한 것이 우선권을 가짐 → file 형태(변경 어려움) 외부 설정보다 Java 시스템 속성(실행 시 원하는 값 부여)이 우선권을 가짐
+     *   - 범위가 넓은 것보다 좁은 것이 우선권을 가짐 → Java 시스템 속성보다 커맨드 라인 옵션 인수가 우선권을 가짐
      * */
 }
