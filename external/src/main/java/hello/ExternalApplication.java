@@ -115,4 +115,43 @@ public class ExternalApplication {
      *   - 더 유연한 것이 우선권을 가짐 → file 형태(변경 어려움) 외부 설정보다 Java 시스템 속성(실행 시 원하는 값 부여)이 우선권을 가짐
      *   - 범위가 넓은 것보다 좁은 것이 우선권을 가짐 → Java 시스템 속성보다 커맨드 라인 옵션 인수가 우선권을 가짐
      * */
+    /*
+    * 외부 설정 4 - 파일 형태 설정
+    * - 필요성
+    *   - 외부 설정값이 많아지면 앞에서 언급한 OS 환경 변수, Java 시스템 속성, 커맨드라인 옵션 인수를 사용하기 불편
+    * - (방법 1) 외부 파일
+    *   - 사용 방법
+    *     - 실행시킬 jar 파일을 둘 경로에 application.properties 파일을 두고 key=value 형식 설정값 작성
+    *   - 단점
+    *     - 각 machine마다 설정 파일을 관리해줘야해서 귀찮음, 물론 어느 정도 자동화하는 방법은 찾을 수 있음
+    *     - 외부 파일의 변경 이력을 소스코드 변경 이력과 연결하여 확인하기 어려움
+    *   - 단점에도 불구하고 이 방법을 사용해야하는 경우가 있을 수 있음
+    * - (방법 2) 내부 파일
+    *   - 설정 파일을 프로젝트 내부에 포함, 빌드 시점에 소스코드와 함께 빌드, 배포 시 설정 정보도 함께 배포
+    *     - jar 파일에 설정 데이터 파일까지 포함해서 관리
+    *     - profile 개념 → Spring Boot의 도움을 받아, 각 환경마다 다른 설정 파일을 사용하도록 구성 가능함
+    *     - 설정 파일 변경 이력을 소스코드 변경 이력과 함께 관리 가능
+    * - (방법 2-1) 분리된 내부 파일
+    *   - 작성 시
+    *     - 프로젝트 src/main/resources 경로에 application-[profile 이름].properties(혹은 yml) 파일 작성
+    *       - ex. application-prod.properties에 prod 환경에서 필요한 설정값 작성
+    *       - ex. application-dev.properties에 dev 환경에서 필요한 설정값 작성
+    *   - 사용 시
+    *     - 실행 시 외부 설정 spring.profiles.active key의 value로 profile 이름을 넘기면, 해당 profile의 내부 파일 정보를 설정값으로 사용
+    *       - ex. Java System property로 "-Dspring.profiles.active=dev"를 넘김
+    *       - ex. commandline option argument로 "--spring.profiles.active=dev"를 넘김
+    *   - 설정이 여러 파일로 분리되어 한 눈에 들어오지 않을 수 있음
+    * - (방법 2-2) 하나의 내부 파일
+    *   - 작성 시
+    *     - 프로젝트 src/main/resources 경로에 application.properties(혹은 yml) 파일 작성
+    *     - 논리적인 영역 구분
+    *       - 물리적인 하나의 파일 안에서 논리적으로 각 profile별 설정 문서를 분리
+    *       - application.properties의 경우 #--- 혹은 !--- 사용
+    *       - application.yml의 경우 --- 사용
+    *       - (주의사항)
+    *         - 논리 문서 구분 기호에는 선행 공백이 없어야 하며, 정확히 3개의 -가 있어야 함(2개도 x, 4개도 x)
+    *         - 구분 기호 바로 앞과 뒤의 줄은 주석 줄(주석 접두사 #로 시작하는 줄)이 아니어야 함
+    *     - 각 영역마다 spring.config.activate.on-profile key로 profile 값 지정
+    *       - 어떤 profile에서 해당 영역 논리 문서가 설정 데이터로 활성화되는지 지정하는 것
+    * */
 }
