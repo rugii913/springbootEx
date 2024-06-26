@@ -1,11 +1,12 @@
 package hello;
 
-import hello.config.MyDataSourceEnvConfig;
+import hello.config.MyDataSourceValueConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
-@Import(MyDataSourceEnvConfig.class)
+//@Import(MyDataSourceEnvConfig.class)
+@Import(MyDataSourceValueConfig.class)
 @SpringBootApplication(scanBasePackages = {"hello.datasource"})
 // 예제 진행을 위해 scanBasePackage는 hello.datasource로 두고 설정 정보 @Configuration클래스는 @Import로 가져옴
 public class ExternalReadApplication {
@@ -38,5 +39,31 @@ public class ExternalReadApplication {
     *   - Environment bean 객체에서 getProperty()로 외부 설정값을 가져오는 작업을 반복해야 함
     *     - 설정값이 추가되면 객체의 메서드를 호출하는 해당 코드도 추가해야 함
     *     - 설정값이 추가될 때마다 type 변환도 고려해줘야 함 
+    * */
+    /*
+    * @Value를 이용한 값 주입
+    * - 사용 방법
+    *   - @Value{"${[외부 설정 key]}"}를 필드 혹은 메서드의 파라미터에 붙임
+    *     - ex. @Value("${my.datasource.username}") private String username
+    *     - Kotlin은 format string 문법과 표기 형태가 겹치므로 @Value{"\${[외부 설정 key]}"}로 사용
+    *       - 즉 Kotlin은 \을 빼먹으면 동작하지 않음
+    *       - ex. @Value("\${my.datasource.username}") private val username: String
+    *   - (1) 필드 주입 방식
+    *     - component의 field에 @Value를 붙임
+    *     - 필드 주입이므로 private이어도 가능(CGLIB 변조)
+    *     - 다만 final field에는 주입 불가능 - final 붙일 경우 컴파일 오류(final은 생성자에서 초기화 되어야 함)
+    *   - (2) 파라미터 주입 방식
+    *     - component의 method의 parameter에 @Value를 붙임
+    * - 참고 사항
+    *   - 외부 설정값은 기본적으로 String이지만, 주입되는 변수에 지정된 type에 따라 Spring Boot에서 적당히 type을 변환해줌
+    *   - 기본값은 :[기본값]을 외부 설정 key 뒤에 붙여줌
+    * - 장점
+    *   - 개별값 하나하나를 주입받을 때는 Environment bean을 사용할 때보다 편함
+    *   - MyDataSourceValueConfig에서는 @Configuration이 붙은 클래스에 대한 예시를 들었지만
+    *     - @Component가 붙은 클래스에서도 직접 사용 가능
+    *     - https://docs.spring.io/spring-boot/reference/features/external-config.html#features.external-config.typesafe-configuration-properties
+    * - 단점
+    *   - 각 값별로 하나하나 외부 설정 정보 key를 알려주고 주입받는 부분이 번거로움
+    *   - 연관되어 있는 정보이더라도 개별 값들로 우선 가져온 후 사용해야 함
     * */
 }
