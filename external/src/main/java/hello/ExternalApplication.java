@@ -154,4 +154,29 @@ public class ExternalApplication {
     *     - 각 영역마다 spring.config.activate.on-profile key로 profile 값 지정
     *       - 어떤 profile에서 해당 영역 논리 문서가 설정 데이터로 활성화되는지 지정하는 것
     * */
+    /*
+    * 파일 형태 설정에서의 우선 순위
+    * - default profile과 파일 형태 설정의 기본값
+    *   - spring.profiles.active에 아무 값도 넘기지 않으면(profile을 지정하지 않으면) default profile 적용
+    *     - 특정 spring.config.activate.on-profile이 명시된 파일들만 있다면 파일에서 설정한 설정값들은 모두 null
+    *   - 보통 local에서 손쉽게 사용할 때는 default profile과 파일 형태 설정의 기본값을 사용함
+    *   - 파일 형태 설정에서 기본값을 지정할 수 있고, 이 지정된 profile(spring.profiles.active 값)과는 무관하게 항상 사용
+    *   - 정리하면
+    *     - 설정 파일의 기본값 지정 → profile(spring.profiles.active 값)과 무관하게 항상 동작 → default profile에서도 동작
+    * - Spring이 파일 형태 설정을 읽을 때의 동작 방식
+    *   - 파일 형태 설정(application.properties 혹은 yml)을 읽을 때 위에서 아래로 순서대로 읽으면서 설정
+    *   - 설정 파일의 기본값은 무조건 읽음
+    *     - profile이 지정된 경우 해당하는 논리 문서(spring.config.activate.on-profile의 값과 활성화된 profile 값이 일치)도 읽음
+    *     - 앞서 말했듯 읽는 순서는 위에서 아래
+    *     - 중복된 key=value 설정은 덮어씀
+    *   - 따라서 기본값 설정 논리 문서 영역은 profile 지정 설정 논리 문서 영역보다 아래에 두면 안 됨
+    *     - 기본값 설정은 활성화된 profile에 관계 없이 항상 읽히고
+    *     - 특정 profile을 지정했더라도 위에서부터 아래로 읽기 때문에 아래에 있는 기본값 설정이 읽힘
+    * - cf. 다수 프로파일 활성화 가능
+    *   - ex. Java system property 사용 시 VM 옵션으로 "-Dspring.profiles.active=dev,prod" 넘김
+    *   - ex. commandline option argument 사용 시 args로 "--spring.profiles.active=dev,prod" 넘김
+    * - 통상적인 설정 문서 구성 방식
+    *   - 위에 로컬 개발 환경에서 사용할 기본값 논리 문서를 두고
+    *   - 아래에 특정 profile 설정 논리 문서를 두어, profile마다 변경해야할 설정값을 덮어쓰도록 함
+    * */
 }
