@@ -11,6 +11,10 @@ public class ExternalApplication {
     }
 
     /*
+    * 외부 설정 간 우선 순위 → 맨 마지막 부분에 설명
+    * - 참고 자료 https://docs.spring.io/spring-boot/reference/features/external-config.html
+    * */
+    /*
      * 외부 설정의 필요성 및 외부 설정 방법
      * - **여러 환경이 존재하더라도, 빌드는 한 번만, 실행 시점에 동적으로 외부 설정값 주입**
      *   - 하나의 app을 여러 다른 환경에서 사용해야할 때(ex. 개발 환경, 운영 환경, ...)
@@ -178,5 +182,33 @@ public class ExternalApplication {
     * - 통상적인 설정 문서 구성 방식
     *   - 위에 로컬 개발 환경에서 사용할 기본값 논리 문서를 두고
     *   - 아래에 특정 profile 설정 논리 문서를 두어, profile마다 변경해야할 설정값을 덮어쓰도록 함
+    * */
+    /*
+    * 외부 설정 간의 우선 순위
+    * - 공식 문서 Externalized Configuration https://docs.spring.io/spring-boot/reference/features/external-config.html
+    *   - 번호가 더 큰 것이 더 높은 우선 순위
+    * - 일반 원칙으로 생각해볼 것
+    *   - 더 유연한 것이 우선 → ex. 변경하기 어려운 설정 데이터 파일보다 실행 시 원하는 값을 줄 수 있는 Java system properties가 우선
+    *   - 범위가 넓은 것보다 좁은 것이 우선 → ex. OS 환경 변수보다 Java system properties가 우선
+    * - 자주 사용하는 것들의 우선순위만 살펴보면(아래가 더 높은 우선 순위)
+    *   - 설정 데이터 파일(application.properties 또는 yml)
+    *     - 설정 데이터 간의 우선순위 - https://docs.spring.io/spring-boot/reference/features/external-config.html#features.external-config.files
+    *       - jar 내부 application.properties
+    *       - jar 내부 특정 profile에 적용되는 application-[profile 이름].properties
+    *       - jar 외부 application.properties
+    *       - jar 외부 특정 profile에 적용되는 application-[profile 이름].properties
+    *     - 외부 jar가 더 유연하므로 우선 순위 높음, profile이 정해진 파일이 범위가 더 좁으므로 우선 순위 높음
+    *   - OS environment variables
+    *   - Java system properties(System.getProperties())
+    *   - commandline arguments(commandline option arguments 포함)
+    *   - @TestPropertySource(테스트에서 사용)
+    * - 조회 시 실제 동작 방식
+    *   - 설정값이 덮어씌워지는 것이 아니라
+    *   - Environment를 통해 조회 시 우선순위가 높은 설정의 key에 대한 value가 조회될 뿐(먼저 조회되어 return)
+    * - 권장하는 방식
+    *   - 기본적으로 설정 데이터 파일(application.properties)에 설정을 보관하고
+    *   - 일부 속성을 변경할 필요가 있을 때
+    *     - Java system properties 혹은 commandline option arguments를 사용하여 조회되도록 함
+    *     - 혹은 jar 외부 설정 데이터 파일을 두어 일부 속성만 변경하여 조회되도록 함
     * */
 }
