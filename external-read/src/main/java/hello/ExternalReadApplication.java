@@ -76,4 +76,29 @@ public class ExternalReadApplication {
     *   - 각 값별로 하나하나 외부 설정 정보 key를 알려주고 주입받는 부분이 번거로움
     *   - 연관되어 있는 정보이더라도 개별 값들로 우선 가져온 후 사용해야 함
     * */
+    /*
+    * @ConfigurationProperties를 이용한 type-safe configuration properties(타입 안전한 설정 속성)
+    * - 사용 방법
+    *   - 값 주입 방식
+    *     - 필드 주입 - Java bean property 방식으로 setter 사용
+    *     - 생성자 주입(@ConstructorBinding) - setter 사용 방지, 설정값이 변경되지 않도록 함
+     *   - bean 등록 방식
+    *     - (1) @ConfigurationProperties 붙은 클래스를 직접 @Component로 bean 등록
+    *     - (2) @ConfigurationProperties 붙은 클래스를 @Bean으로 bean 등록
+    *     - (3) @ConfigurationProperties 붙은 클래스를 @EnableConfigurationProperties를 이용하여 bean으로 등록
+    *     - (4) @ConfigurationProperties 붙은 클래스를 @ConfigurationPropertiesScan을 이용하여 bean으로 등록
+    *   - Java bean이므로 Java bean validation 사용 가능
+    *   - 위의 과정을 이용해 외부 설정값을 주입받은 설정 속성이 bean으로 등록됐으므로, 다른 bean을 사용하듯이  
+    * - 활용 사례 → spring-boot-autoconfigure 라이브러리
+    *   - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration에서도
+    *     - @EnableConfigurationProperties(DataSourceProperties.class)를 사용
+    *     - org.springframework.boot.autoconfigure.jdbc.DataSourceProperties 클래스도 확인해보면
+    *       - 사용하는 외부 설정의 key를 확인해볼 수 있음
+    *       - ex. spring.datasource.classLoader, spring.datasource.url, spring.datasource.username, ...
+    * - 장점
+    *   - 외부 설정값들을 모아 Spring bean 객체 형태로 변환하여 사용 가능
+    *   - 외부 설정값에서의 계층을 객체에서 표현 가능
+    *   - 객체 변환 시 type에 대해 검증하므로 type-safety가 있음
+    *   - Java bean이므로 bean validation 적용 가능
+    * */
 }
