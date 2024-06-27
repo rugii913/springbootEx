@@ -25,6 +25,7 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter") // web 사용하지 않음, Tomcat도 없음
+    implementation("org.springframework.boot:spring-boot-starter-validation") // Java bean validation
     annotationProcessor("org.projectlombok:lombok")
 
     // test 관련
