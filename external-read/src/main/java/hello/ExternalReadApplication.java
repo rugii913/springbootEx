@@ -80,7 +80,7 @@ public class ExternalReadApplication {
     * @ConfigurationProperties를 이용한 type-safe configuration properties(타입 안전한 설정 속성)
     * - 사용 방법
     *   - 값 주입 방식
-    *     - 필드 주입 - Java bean property 방식으로 setter 사용
+    *     - setter 주입 - Java bean property 방식으로 setter 사용
     *     - 생성자 주입(@ConstructorBinding) - setter 사용 방지, 설정값이 변경되지 않도록 함
      *   - bean 등록 방식
     *     - (1) @ConfigurationProperties 붙은 클래스를 직접 @Component로 bean 등록
