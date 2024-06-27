@@ -3,6 +3,7 @@ package hello;
 import hello.config.MyDataSourceConfigV1;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.annotation.Import;
 
 //@Import(MyDataSourceEnvConfig.class)
@@ -10,6 +11,12 @@ import org.springframework.context.annotation.Import;
 @Import(MyDataSourceConfigV1.class)
 @SpringBootApplication(scanBasePackages = {"hello.datasource"})
 // 예제 진행을 위해 scanBasePackage는 hello.datasource로 두고 설정 정보 @Configuration클래스는 @Import로 가져옴
+@ConfigurationPropertiesScan(basePackages = {"hello.datasource"})
+/*
+* @ConfigurationPropertiesScan는 @ConfigurationProperties 붙은 클래스를 마치 컴포넌트 스캔처럼 스캔할 수 있게 함
+* → @EnableConfigurationProperties({MyDataSourcePropertiesV1.class})를 직접 어딘가에 붙일 필요가 없어짐
+* - bean을 직접 등록하는지, component scan을 지용하여 자동 등록하는지 차이와 비슷하다고 생각하면 됨
+* */
 public class ExternalReadApplication {
 
     public static void main(String[] args) {
