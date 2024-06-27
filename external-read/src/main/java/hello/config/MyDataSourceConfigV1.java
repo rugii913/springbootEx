@@ -10,8 +10,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MyDataSourceConfigV1 {
 
+    @Bean // @Configuration 붙은 클래스에서 @Bean으로 Spring bean 등록 → 예제에서 주로 보이는 방식은 아님
+    public MyDataSourcePropertiesV1 myDataSourcePropertiesV1() {
+        return new MyDataSourcePropertiesV1();
+    }
+
+
     @Bean
-    public MyDataSource dataSource(MyDataSourcePropertiesV1 properties) {
+    public MyDataSource dataSource() {
+        MyDataSourcePropertiesV1 properties = myDataSourcePropertiesV1();
+
         return new MyDataSource(
                 properties.getUrl(),
                 properties.getUsername(),
