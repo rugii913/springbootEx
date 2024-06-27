@@ -3,23 +3,22 @@ package hello.config;
 import hello.datasource.MyDataSource;
 import hello.datasource.MyDataSourcePropertiesV1;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 @Slf4j
-@Configuration
+@EnableConfigurationProperties({MyDataSourcePropertiesV1.class}) // 예제에서 흔히 사용하는 방법
+// 사용 대상인 @ConfigurationProperties 붙은 클래스를 value로 넘김 → 대상 configuration properties 클래스가 bean으로 등록
 public class MyDataSourceConfigV1 {
 
-    @Bean // @Configuration 붙은 클래스에서 @Bean으로 Spring bean 등록 → 예제에서 주로 보이는 방식은 아님
-    public MyDataSourcePropertiesV1 myDataSourcePropertiesV1() {
-        return new MyDataSourcePropertiesV1();
+    private final MyDataSourcePropertiesV1 properties;
+
+    public MyDataSourceConfigV1(MyDataSourcePropertiesV1 properties) {
+        this.properties = properties;
     }
 
-
-    @Bean
+    @Bean // cf. @Bean은 @Configuration 붙은 클래스 안에 있지 않더라도 동작함 → api docs의 @Bean Lite Mode 침고
     public MyDataSource dataSource() {
-        MyDataSourcePropertiesV1 properties = myDataSourcePropertiesV1();
-
         return new MyDataSource(
                 properties.getUrl(),
                 properties.getUsername(),
