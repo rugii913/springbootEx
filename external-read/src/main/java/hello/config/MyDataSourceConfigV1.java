@@ -3,12 +3,9 @@ package hello.config;
 import hello.datasource.MyDataSource;
 import hello.datasource.MyDataSourcePropertiesV1;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
 @Slf4j
-@EnableConfigurationProperties({MyDataSourcePropertiesV1.class}) // 예제에서 흔히 사용하는 방법
-// 사용 대상인 @ConfigurationProperties 붙은 클래스를 value로 넘김 → 대상 configuration properties 클래스가 bean으로 등록
 public class MyDataSourceConfigV1 {
 
     private final MyDataSourcePropertiesV1 properties;
