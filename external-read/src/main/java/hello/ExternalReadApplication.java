@@ -1,10 +1,8 @@
 package hello;
 
 import hello.config.MyDataSourceConfigV1;
-import hello.datasource.MyDataSourcePropertiesV1;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Import;
 
 //@Import(MyDataSourceEnvConfig.class)
@@ -12,14 +10,6 @@ import org.springframework.context.annotation.Import;
 @Import(MyDataSourceConfigV1.class)
 @SpringBootApplication(scanBasePackages = {"hello.datasource"})
 // 예제 진행을 위해 scanBasePackage는 hello.datasource로 두고 설정 정보 @Configuration클래스는 @Import로 가져옴
-@EnableConfigurationProperties({MyDataSourcePropertiesV1.class})
-/*
-* cf. @EnableConfigurationProperties는 아무 Spring bean에 붙여도 동작함
-* - 꼭 해당 bean을 주입 받을 class에 붙여야 동작하는 것이 아님
-*   - 단지 연관성이 떨어지고 관리하기 피곤한 코드가 될 뿐
-* - @EnableConfigurationProperties는 @Configuration도 아님
-* */
-//
 public class ExternalReadApplication {
 
     public static void main(String[] args) {
