@@ -1,12 +1,13 @@
 package hello;
 
-import hello.config.MyDataSourceValueConfig;
+import hello.config.MyDataSourceConfigV1;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
 //@Import(MyDataSourceEnvConfig.class)
-@Import(MyDataSourceValueConfig.class)
+//@Import(MyDataSourceValueConfig.class)
+@Import(MyDataSourceConfigV1.class)
 @SpringBootApplication(scanBasePackages = {"hello.datasource"})
 // 예제 진행을 위해 scanBasePackage는 hello.datasource로 두고 설정 정보 @Configuration클래스는 @Import로 가져옴
 public class ExternalReadApplication {
