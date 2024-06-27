@@ -101,4 +101,17 @@ public class ExternalReadApplication {
     *   - 객체 변환 시 type에 대해 검증하므로 type-safety가 있음
     *   - Java bean이므로 bean validation 적용 가능
     * */
+    /*
+    * YAML(YAML Ain't Markup Language) 형식 설정 데이터 파일
+    * - 특징
+    *   - 데이터 계층 구조가 잘 보이는 특징
+    * - 사용 방법
+    *   - .yml 혹은 .yaml 확장자
+    *   - 공백 문자를 이용해 계층 구조를 만듦, 1칸도 가능하지만 보통 공백 2칸을 사용(일관성 있게 사용할 것)
+    *   - key와 value의 구분 기호로는 :를 사용
+    *   - 읽을 때에는 Spring이 알아서 parsing하여 properties 파일처럼 평평하게 만들어서 읽어들임
+    * - 주의 사항
+    *   - application.properties와 application.yml을 함께 사용하면 application.properties가 우선권을 가짐
+    *   - 우선권을 알고 있더라도 일관성을 위해 둘을 함께 사용하지 말 것
+    * */
 }
