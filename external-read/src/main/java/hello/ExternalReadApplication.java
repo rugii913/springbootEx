@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Import;
 //@Import(MyDataSourceConfigV1.class)
 //@Import(MyDataSourceConfigV2.class)
 @Import(MyDataSourceConfigV3.class)
-@SpringBootApplication(scanBasePackages = {"hello.datasource"})
+@SpringBootApplication(scanBasePackages = {"hello.datasource", "hello.pay"})
 // 예제 진행을 위해 scanBasePackage는 hello.datasource로 두고 설정 정보 @Configuration클래스는 @Import로 가져옴
 @ConfigurationPropertiesScan(basePackages = {"hello.datasource"})
 /*
@@ -113,5 +113,14 @@ public class ExternalReadApplication {
     * - 주의 사항
     *   - application.properties와 application.yml을 함께 사용하면 application.properties가 우선권을 가짐
     *   - 우선권을 알고 있더라도 일관성을 위해 둘을 함께 사용하지 말 것
+    * */
+    /*
+    * @Profile 활용하여 활성화된 profile에 따른 spring bean 분리
+    * - 각 환경별로 활성화시킬 profile을 지정함으로써
+    *   - 외부 설정값을 분리할 수 있을 뿐만 아니라
+    *   - @Profile을 이용하여 등록되는 Spring bean도 분리 가능
+    * - @Profile의 작동 원리
+    *   - @Profile에는 @Conditional(ProfileCondition.class)이 붙어있음
+    *   - 즉 활성화된 profile에 따라 해당 bean 등록 여부를 결정하도록 추상화해둔 것
     * */
 }
