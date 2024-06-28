@@ -78,4 +78,27 @@ public class ActuatorApplication {
     *   - 원하는 경우 직접 health 기능 구현하여 추가 가능
     *     - https://docs.spring.io/spring-boot/reference/actuator/endpoints.html#actuator.endpoints.health.writing-custom-health-indicators
     * */
+    /*
+    * info
+    * - (사용 목적) 애플리케이션의 기본 정보 확인
+    * - 제공 정보
+    *   - (cf.) java, os, env는 기본으로 비활성화 되어 있고, build, git은 별도 파일이 필요하므로, 다른 설정 없이 actuator/info를 호출하면 아무 데이터도 확인할 수 없음
+    *   - java: Java runtime 정보
+    *   - os: OS 정보
+    *   - env: Environment에서 "info."으로 시작하는 정보 표시 여부
+    *   - build: 빌드 정보 - 확인하려면 META-INF/build-info.properties 파일 필요
+    *   - git: git 정보(branch, commit 정보 등) - 확인하려면 git.properties 파일 필요
+    *     - 잘못된 branch 혹은 commit이 build 된 것을 확인할 때 유용
+    * - 사용 방법
+    *   - java, os, env 정보 활성화 방법
+    *     - 다음 외부 설정값 지정 → management.info.[java 또는 os 또는 env].enabled=true
+    *     - cf. management.endpoint.info가 아니라 management.info로 계층이 다름에 유의
+    *   - build 정보를 표시하기 위한 META-INF/build-info.properties 파일 생성 방법(Gradle 활용)
+    *     - build.gradle에 다음 추가 → springBoot { buildInfo() }
+    *   - git 정보를 표시하기 위한 git.properties 파일 생성 방법(Gradle 활용)
+    *     - build.gradle 플러그인 추기(Kotlin DSL 기준) → id("com.gorylenko.gradle-git-properties") version "[플러그인 버전]"
+    *     - git 정보를 자세하게 확인하려면 다음 외부 설정값 지정 → management.info.git.mode="full"
+    *   - info 관련 커스텀한 기능을 추가하려면 참고
+    *     - https://docs.spring.io/spring-boot/reference/actuator/endpoints.html#actuator.endpoints.info.writing-custom-info-contributors
+     * */
 }

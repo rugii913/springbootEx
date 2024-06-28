@@ -2,6 +2,7 @@ plugins {
     java
     id("org.springframework.boot") version "3.3.0"
     id("io.spring.dependency-management") version "1.1.5"
+    id("com.gorylenko.gradle-git-properties") version "2.4.1" // git 정보를 표시하기 위한 git.properties 파일 생성 플러그인
 }
 
 group = "hello"
@@ -43,4 +44,9 @@ dependencies { // Initializr에서 Spring Boot Actuator, Spring Web, Spring Data
 
 tasks.test {
     useJUnitPlatform()
+}
+
+// build 정보를 표시하기 위한 META-INF/build-info.properties 파일 생성
+springBoot {
+    buildInfo()
 }
