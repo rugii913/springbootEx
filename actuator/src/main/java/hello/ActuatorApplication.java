@@ -23,4 +23,42 @@ public class ActuatorApplication {
     *   - 이에 더해 Micrometer, Prometheus, Grafana 등 모니터링 시스템과 쉽게 연동 가능
     *   - cf. actuator는 시스템을 움직이거나 제어하는 기계 장치라는 의미
     * */
+    /*
+    * Spring Boot actuator의 endpoint 설정
+    * - actuator endpoint를 사용(호출 가능하도록)하려면 (1) endpoint 활성화, (2) endpoint 노출 두 과정 필요
+    *   - 대부분의 endpoint는 기본적으로 활성화되어 있음(shutdown 제외)
+    *   - Spring Boot autoconfigure에서 actuator endpoint 노출 기본 설정은 endpoint ID 중 health만 노출
+    * - (1) endpoint 활성화/비활성화
+    *   - 해당 기능을 사용할지 말지 선택하는 것
+    *   - 방법 (cf. 설정 데이터로 yml 파일 사용 시 적절하게 계층구조에 맞춰 작성)
+    *     - 외부 설정값을 다음과 같이 부여 → management.endpoint.[endpoint ID].enabled=true
+    *     - 비활성화시킬 경우 true 대신 false 부여
+    * - (2) endpoint 노출/제외
+    *   - 활성화된 endpoint를 HTTP로 노출할지, JMX로 노출할지 선택하는 것
+    *     - HTTP, JMX 모두 노출할 수도 있음
+    *   - 노출 방법 (cf. 설정 데이터로 yml 파일 사용 시 적절하게 계층구조에 맞춰 작성)
+    *     - (HTTP 노출) 외부 설정값을 다음과 같이 부여 → management.endpoints.web.exposure.include="[노출할 endpoint ID]"
+    *     - (JMX 노출) 외부 설정값을 다음과 같이 부여 → management.endpoints.jmx.exposure.include="[노출할 endpoint ID]"
+    *     - [노출할 endpoint ID] 자리에 *을 줄 경우 활성화된 모든 endpoint 노출
+    *   - 제외 방법 (cf. 설정 데이터로 yml 파일 사용 시 적절하게 계층구조에 맞춰 작성)
+    *     - 외부 설정값을 다음과 같이 부여 → management.endpoints.[web 또는 jmx].exposure.exclude="[제외할 endpoint ID]"
+    * */
+    /*
+    * 다양한 actuator endpoint
+    * - 주요 endpoint ID 목록
+    *   - beans: Spring container에 등록된 Spring bean 표시
+    *   - conditions: condition을 통해서 bean을 등록할 때 평가 조건과 일치하거나 일치하지 않는 이유 표시
+    *   - configprops: @ConfigurationProperties(type-safe configuration properties) 표시
+    *   - env: 외부 설정값 Environment 정보 표시
+    *   - health: 애플리케이션 health 정보 표시 → 뒤에서 자세히 설명
+    *   - httpexchanges: HTTP 호출 응답 정보 표시, HttpExchangeRepository를 구현한 bean을 별도로 등록해야 함 → 뒤에서 자세히 설명
+    *   - info: 애플리케이션 정보 표시 → 뒤에서 자세히 설명
+    *   - loggers: 애플리케이션 로거 설정 표시 → 뒤에서 자세히 설명
+    *   - merics: 애플리케이션 메트릭 정보 표시
+    *   - mappings: @RequestMappint 정보 표시
+    *   - threaddump: thread dump를 실행하여 표시
+    *   - shutdown: 애플리케이션 종료, 기본적으로 비활성화 되어 있음
+    * - 전체 endpoint 간단한 설명 공식 문서
+    *   - https://docs.spring.io/spring-boot/reference/actuator/endpoints.html
+    * */
 }
