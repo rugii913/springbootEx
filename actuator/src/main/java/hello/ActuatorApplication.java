@@ -61,4 +61,21 @@ public class ActuatorApplication {
     * - 전체 endpoint 간단한 설명 공식 문서
     *   - https://docs.spring.io/spring-boot/reference/actuator/endpoints.html
     * */
+    /*
+    * health
+    * - (사용 목적) 애플리케이션에 문제가 발생했을 때 문제를 인지하기 위함 - 문제 발생 시 추적 범위를 좁힐 수 있음
+    * - 사용 방법
+    *   - 단순히 애플리케이션이 동작 중인지를 판단하는 게 아니라 다양한 정보를 종합해서 health 정보를 판단
+    *     - heatlh component 중 하나라도 문제가 있다면 전체 상태가 DOWN으로 표시
+    *   - 자세한 정보를 확인하려면 다음 외부 설정값 지정 → management.endpoint.health.show-details=always
+    *     - (1) DB 등 응답 여부 체크 / cf. JDBC spec상 검증하는 기능이 있음 → validationQuery 정보로 확인 가능
+    *     - (2) 시스템 디스크 사용량 체크
+    *     - (3) ping 체크
+    *   - 덜 자세한 정보를 확인하려면 다음 외부 설정값 지정 → management.endpoint.health.show-components=always
+    *     - 세 가지 항목에 대한 status만 확인
+    *   - 자세한 health 기본 지원 기능 참고
+    *     - https://docs.spring.io/spring-boot/reference/actuator/endpoints.html#actuator.endpoints.health.auto-configured-health-indicators
+    *   - 원하는 경우 직접 health 기능 구현하여 추가 가능
+    *     - https://docs.spring.io/spring-boot/reference/actuator/endpoints.html#actuator.endpoints.health.writing-custom-health-indicators
+    * */
 }
