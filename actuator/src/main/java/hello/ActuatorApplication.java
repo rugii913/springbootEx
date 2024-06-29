@@ -1,13 +1,21 @@
 package hello;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.web.exchanges.HttpExchangeRepository;
+import org.springframework.boot.actuate.web.exchanges.InMemoryHttpExchangeRepository;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class ActuatorApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ActuatorApplication.class, args);
+    }
+
+    @Bean
+    public HttpExchangeRepository httpExchangeRepository() {
+        return new InMemoryHttpExchangeRepository();
     }
 
     /*
@@ -124,5 +132,18 @@ public class ActuatorApplication {
     *     - (필요성) 운영 서버에서는 통상적으로 INFO 이상의 로그 레벨을 사용하는데, 급하게 DEBUG, TRACE 로그를 확인해야 하는 경우 사용
     *       - 애플리케이션을 재시작하기 않고 실시간으로 로그 레벨 변경 가능
     *     - HTTP POST 메서드로 /actuator/loggers/[로거 이름], body JSON 형식으로 { "configuredLevel": "[지정할 로그 레벨]" } 호출
+    * */
+    /*
+    * httpexchanges
+    * - (주의 사항) HttpExchangeRepository 구현체를 bean으로 등록해야 httpexchanges endpoint를 활성화할 수 있음
+    * - (사용 목적) HTTP 요청 응답 과거 기록 확인
+    *   - cf. 많이 사용하지는 않고, 로컬 혹은 개발 단계에서 활용해볼 수 있음
+    *   - cf. 기능 자체가 무척 단순하고 제약이 많기 때문에, 운영에서는 별도 APM(PinPoint 등), Zipkin 같은 다른 도구를 사용하는 것을 권장
+    * - 사용 방법
+    *   - HttpExchangeRepository 구현체를 Spring bean으로 등록 → 자동으로 httpexchanges endpoint 활성화(+ 설정에 따라 노출)됨
+    *     - 샘플 구현 클래스 InMemoryHttpExchangeRepository 제공 → LinkedList 형태(in memory)로 HttpExchange 객체를 100건까지 저장
+    *       - cf. InMemoryHttpExchangeRepository의 setCapacity()로 최대 저장 건수를 변경할 수도 있긴 함
+    *   - HTTP 요청 응답 과거 기록 확인
+    *     - /actuator/httpexchanges endpoint 호출
     * */
 }
