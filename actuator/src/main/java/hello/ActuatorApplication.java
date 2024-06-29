@@ -146,4 +146,16 @@ public class ActuatorApplication {
     *   - HTTP 요청 응답 과거 기록 확인
     *     - /actuator/httpexchanges endpoint 호출
     * */
+    /*
+    * actuator endpoint 접근 제한
+    * - (필요성) actuator의 제공 정보는 애플리케이션의 내부 정보를 너무 많이 노출함, 외부 인터넷에서 접근을 제한할 필요 있음
+    * - 방법
+    *   - (1) actuator 다른 포트에서 실행 → actuator 기능만 애플리케이션 서버 포트와 다른 포트에서 접근, 별도 Tomcat으로 실행됨
+    *     - 다음 외부 설정값 지정 → management.server.port=[지정할 포트 번호]
+    *   - (2) actuator 경로에 인증·인가 설정
+    *     - 포트 분리가 불가능한 경우 /actuator 경로에 servlet filter, Spring interceptor, Spring Security 등을 이용하여 접근 제한 필요
+    * - cf. actuator endpoint base-path 변경
+    *   - 다음 외부 설정값 지정 → management.endpoints.web.base-path. "/[지정할 base-path]"
+    *     - 당연하겠지만 base-path 기본값은 "/actuator"
+    * */
 }
