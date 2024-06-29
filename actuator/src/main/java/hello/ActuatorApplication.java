@@ -62,7 +62,7 @@ public class ActuatorApplication {
     *   - httpexchanges: HTTP 호출 응답 정보 표시, HttpExchangeRepository를 구현한 bean을 별도로 등록해야 함 → 뒤에서 자세히 설명
     *   - info: 애플리케이션 정보 표시 → 뒤에서 자세히 설명
     *   - loggers: 애플리케이션 로거 설정 표시, POST 메서드 활용 로그 레벨 실시간 변경 → 뒤에서 자세히 설명
-    *   - merics: 애플리케이션 메트릭 정보 표시
+    *   - metrics: 애플리케이션 메트릭 정보 표시 → micrometer 설명할 때 자세히 설명
     *   - mappings: @RequestMappint 정보 표시
     *   - threaddump: thread dump를 실행하여 표시
     *   - shutdown: 애플리케이션 종료, 기본적으로 비활성화 되어 있음
