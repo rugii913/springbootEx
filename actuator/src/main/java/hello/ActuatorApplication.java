@@ -53,7 +53,7 @@ public class ActuatorApplication {
     *   - health: 애플리케이션 health 정보 표시 → 뒤에서 자세히 설명
     *   - httpexchanges: HTTP 호출 응답 정보 표시, HttpExchangeRepository를 구현한 bean을 별도로 등록해야 함 → 뒤에서 자세히 설명
     *   - info: 애플리케이션 정보 표시 → 뒤에서 자세히 설명
-    *   - loggers: 애플리케이션 로거 설정 표시 → 뒤에서 자세히 설명
+    *   - loggers: 애플리케이션 로거 설정 표시, POST 메서드 활용 로그 레벨 실시간 변경 → 뒤에서 자세히 설명
     *   - merics: 애플리케이션 메트릭 정보 표시
     *   - mappings: @RequestMappint 정보 표시
     *   - threaddump: thread dump를 실행하여 표시
@@ -100,5 +100,29 @@ public class ActuatorApplication {
     *     - git 정보를 자세하게 확인하려면 다음 외부 설정값 지정 → management.info.git.mode="full"
     *   - info 관련 커스텀한 기능을 추가하려면 참고
     *     - https://docs.spring.io/spring-boot/reference/actuator/endpoints.html#actuator.endpoints.info.writing-custom-info-contributors
-     * */
+    * */
+    /*
+    * loggers
+    * - (사용 목적) 로깅 관련 정보(설정된 로그 레벨 등) 확인, POST 메서드를 이용하여 로그 레벨 실시간 변경 가능
+    * - 제공 정보
+    *   - 로거가 있는 패키지, 클래스에 대한 로그 레벨
+    * - 사용 방법
+    *   - cf. 외부 설정값 지정을 통한 로그 레벨 설정 방법
+    *     - Spring Boot root 로그 레벨 설정값 지정
+    *       - 외부 설정값 logging.level.root=[OFF/ERROR/WARN/INFO/DEBUG/TRACE]로 로거가 있는 모든 패키지, 클래스에 대한 기본 로그 레벨 설정 가능
+    *         - root의 기본 설정값은 INFO
+    *       - 더 구체적으로 설정값을 명시한 패키지, 클래스에 대해서는 더 구체적인 설정값을 따름
+    *     - 각 패키지, 클래스별 로그 레벨 설정값 지정
+    *       - logging.level.[패키지 혹은 패키지.클래스 이름]
+    *       - 특정 패키지에서 대해 로그 레벨을 명시할 경우 **하위의 모든** 패키지, 클래스에 대해 명시된 로그 레벨이 설정됨
+    *   - 로거가 있는 모든 패키지, 클래스에 대한 로그 레벨 조회 방법
+    *     - /actuator/loggers 호출
+    *   - 특정 로거만 조회 - 특정 로거 이름 기준 조회
+    *     - /actuator/loggers/[로거 이름] 호출
+    *     - ex. 예제에서는 /actuator/logger/hello.controller 혹은 /actuator/logger/hello.controller.LogController
+    *   - 실시간 로그 레벨 변경
+    *     - (필요성) 운영 서버에서는 통상적으로 INFO 이상의 로그 레벨을 사용하는데, 급하게 DEBUG, TRACE 로그를 확인해야 하는 경우 사용
+    *       - 애플리케이션을 재시작하기 않고 실시간으로 로그 레벨 변경 가능
+    *     - HTTP POST 메서드로 /actuator/loggers/[로거 이름], body JSON 형식으로 { "configuredLevel": "[지정할 로그 레벨]" } 호출
+    * */
 }
